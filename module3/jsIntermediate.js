@@ -1,5 +1,7 @@
 console.log("MODULE 3 LABS - JS INTERMEDIATE")
-/* console.log("")
+
+/* 
+console.log("")
 console.log("------------------------------EXCERCISE 1------------------------------")
 console.log("")
 
@@ -13,10 +15,12 @@ for (var i = 0; i < arr.length; i++) {
 }
 
 const str2 = arr.join(" ");
-console.log("Output: "+str2); */
+console.log("Output: "+str2); 
+*/
 
 
-/* console.log("")
+/* 
+console.log("")
 console.log("------------------------------EXCERCISE 2 ------------------------------")
 console.log("")
 
@@ -34,10 +38,12 @@ const truncate = (str, max) => { return str.length >= max ? str.slice(0,max) + "
 // }
 
 // console.log(truncate("This is my 1 exercise from Module 3 Labs JS Intermediate.",12));
-console.log(truncate('This text will be truncated if it is too long', 10))  */
+console.log(truncate('This text will be truncated if it is too long', 10))  
+*/
 
 
-/* console.log("")
+/* 
+console.log("")
 console.log("------------------------------EXCERCISE 3 ------------------------------")
 console.log("")
 
@@ -75,14 +81,16 @@ console.log("e) Find matching values ")
 //         // return element for newArray, if true
 //       }[, thisArg]);
 // }
-animals.seachstring */
+animals.seachstring 
+*/
 
 
 
 
 
 
-/* console.log("")
+/* 
+console.log("")
 console.log("------------------------------EXCERCISE 4 ------------------------------")
 console.log("")
 
@@ -98,11 +106,13 @@ function camelCase(caseProp) {
     console.log("Output: "+str2);
 }
 
-camelCase("margin-left"); */
+camelCase("margin-left"); 
+*/
 
 
 
-/* console.log("")
+/* 
+console.log("")
 console.log("------------------------------EXCERCISE 5 ------------------------------")
 console.log("")
 
@@ -178,11 +188,13 @@ function currencyOperation(float1, float2, operator, decimalValue){
     }
 }
 
-console.log(currencyOperation(22.5, 7.5, "-", 4)) */
+console.log(currencyOperation(22.5, 7.5, "-", 4)) 
+*/
 
 
 
-/* console.log("")
+/* 
+console.log("")
 console.log("------------------------------EXCERCISE 6 ------------------------------")
 console.log("")
 
@@ -200,5 +212,142 @@ function uniqueValue(array){
     return unique
 }
 
-console.log(uniqueValue(colours)) */
+console.log(uniqueValue(colours)) 
+*/
 
+
+/* 
+console.log("")
+console.log("------------------------------EXCERCISE 7 ------------------------------")
+console.log("")
+
+const books = [
+    { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', year: 1925 },
+    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', year: 1960 },
+    { id: 3, title: '1984', author: 'George Orwell', year: 1949 },
+    { id: 4, title: 'Brave New World', author: 'Aldous Huxley', year: 1932 },
+    { id: 5, title: 'The Catcher in the Rye', author: 'J.D. Salinger', year: 1951 },
+    ];
+ */
+
+
+/* 
+console.log("")
+console.log("------------------------------EXCERCISE 8 ------------------------------")
+console.log("")
+
+const phoneBookABC = new Map() //an empty map to begin with
+phoneBookABC.set('Annabelle', '0412312343')
+phoneBookABC.set('Barry', '0433221117')
+phoneBookABC.set('Caroline', '0455221182')
+
+
+const phoneBookDEF = new Map()
+phoneBookDEF.set('Daniel', '0518273493')
+phoneBookDEF.set('Elli', '0318273493')
+phoneBookDEF.set('Frank', '0918273493')
+
+phoneBookABC.set('Caroline', '9198239356')
+
+function printPhoneBook(contacts){
+    for (let item of contacts){
+        console.log(item)
+    }
+}
+
+printPhoneBook(phoneBookABC)
+
+console.log("Merged phonebook")
+const phoneBook = new Map([...phoneBookABC, ...phoneBookDEF]);
+for (let item of phoneBook){
+    console.log(item)
+}
+ */
+
+
+/* 
+console.log("")
+console.log("------------------------------EXCERCISE 9 ------------------------------")
+console.log("")
+
+let salaries = {
+    "Timothy": 35000,
+    "David": 25000,
+    "Mary": 55000,
+    "Christina": 75000,
+    "James": 43000
+};
+
+//console.log(Object.values(salaries));
+// function sumSalaries(salaryObject) {
+//     sumSalary = 0
+//     for (let item of Object.values(salaryObject)) {
+//         sumSalary = sumSalary + item
+//     }
+//     console.log("Total Salary: " + sumSalary)
+// }
+
+// sumSalaries(salaries)
+
+// function getObjectKey(salaries, value) {
+//     return Object.keys(salaries).find(key => salaries[key] === value);
+//   }
+
+const salaryMap = new Map(Object.entries(salaries))
+
+function topEarner(salaryObject){
+    topSalary = 0;
+    const salaryMap = new Map(Object.entries(salaryObject))
+    for (let item of Object.entries(salaryObject)) {
+        if(topSalary<item){
+            topSalary = item;
+        }
+    }
+    topEarnerName = salaryMap.get()
+    //console.log(Object.keys(topSalary)
+}
+
+ */
+
+
+
+
+console.log("")
+console.log("------------------------------EXCERCISE 10 ------------------------------")
+console.log("")
+
+const today = new Date();
+console.log('Current time is ' + today.toLocaleTimeString())
+console.log(today.getHours() + ' hours have passed so far today')
+console.log(today.getMinutes() + ' minutes have passed so far today')
+console.log(today.getSeconds() + ' seconds have passed so far today')
+
+function calulateAge(birthDate,birthMonth,birthYear){
+    var d1 = birthDate;
+    var m1 = birthMonth;
+    var y1 = birthYear;
+
+    var date = new Date();
+    var presentDate = date.getDate();
+    var presentMonth = date.getMonth();
+    var presentYear = date.getFullYear();
+
+    var d = presentDate - d1;
+    var m = presentMonth - m1;
+    var y = presentYear - y1;
+
+    console.log(`I am ${y} years, ${m} months and ${d} days old`)
+}
+
+calulateAge(5,5,1999);
+
+function daysInBetween(date1,date2){
+    var d1 = new Date(date1);
+    var d2 = new Date(date2);
+    var diff = (d2-d1)/(1000 * 3600 * 24);
+
+    
+    console.log("The amount of days in between: " + diff)
+}
+
+daysInBetween("05/1/2005","05/11/2005");
