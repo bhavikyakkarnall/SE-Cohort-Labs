@@ -246,7 +246,7 @@ setTimeout( () => clearInterval(fibonacciSeq),30*1000); */
 }
 //repeatTimeout(2000, 10); */
 
-
+/* 
 console.log("")
 console.log("------------------------------EXCERCISE 5------------------------------")
 console.log("")
@@ -259,5 +259,167 @@ let car = {
         console.log(`This car is a ${this.make} ${this.model} from ${this.year}`);
     }
 };
-car.description(); //works
-setTimeout(car.description, 200); //fails
+//car.description(); //works
+//setTimeout(car.description, 200); //fails
+
+// a) Fix the setTimeout call by wrapping the call to car.description() inside a function
+// setTimeout(function(){
+//     car.description();
+// }.bind(car),200);
+
+// b) Change the year for the car by creating a clone of the original and overriding it
+
+const newCar = car;
+
+console.log(newCar);
+newCar.year = 2010;
+
+console.log("new car deatils: ");
+console.log(newCar);
+
+setTimeout(function(){
+    newCar.description();
+}.bind(newCar),200);
+
+// c) Does the delayed description() call use the original values or the new values from b)? Why?
+
+
+// d) Use bind to fix the description method so that it can be called from within setTimeout without a wrapper function
+
+// e) Change another property of the car by creating a clone and overriding it, and test that setTimeout still uses the bound value from d)
+
+ */
+
+
+/* 
+console.log("")
+console.log("------------------------------EXCERCISE 6------------------------------")
+console.log("")
+
+function multiply(a, b) {
+    console.log(a * b);
+} // prints 25 after 500 milliseconds
+
+// a) Use the example multiply function below to test it with, as above, and assume that all delayed functions will take two parameters
+
+// Function.prototype.delay = function(ms, arg1, arg2){
+//     setTimeout(()=>{
+//         return this.call(null, arg1, arg2)
+//     },ms)
+// }
+
+// multiply.delay(500, 5, 5);
+
+// b) Use apply to improve your solution so that delayed functions can take any number of parameters
+
+Function.prototype.delay = function(delay, ...args) {
+    setTimeout(() => this(...args), delay)
+};
+
+// c) Modify multiply to take 4 parameters and multiply all of them, and test that your delay prototype function still works.
+function multiply4(a, b, c, d) {
+    console.log(a * b * c * d);
+} 
+
+multiply4.delay(1000, 5, 5, 5, 5)
+multiply.delay(2000, 5, 10)
+ */
+
+
+/* 
+console.log("")
+console.log("------------------------------EXCERCISE 7------------------------------")
+console.log("")
+
+
+// a) Define a custom toString method for the Person object that will format and print their details
+
+function Person(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+
+    toString = () => { return `Name: ${this.name}; Age: ${this.age}; Gender: ${gender}` }
+
+}
+const person1 = new Person('James Brown', 73, 'male')
+
+console.log(person1)
+
+// b) Test your method by creating 2 different people using the below constructor function and printing them
+
+const person2 = new Person('Harvey Specter', 40, 'Male')
+const person3 = new Person('Donna Hotop', 30, 'Female')
+
+console.log(person2)
+console.log(person3)
+
+
+// c) Create a new constructor function Student that uses call to inherit from Person and add an extra property cohort
+// d) Add a custom toString for Student objects that formats and prints their details. Test with 2 students.
+function Student(){
+    Person.apply(this, arguments);
+}
+
+const student1 = new Student('Mike Ross', 28, 'Male')
+console.log(student1)
+ */
+
+
+console.log("")
+console.log("------------------------------EXCERCISE 8------------------------------")
+console.log("")
+
+class DigitalClock {
+    constructor(prefix) {
+        this.prefix = prefix;
+    }
+    display() {
+        let date = new Date();
+        //create 3 variables in one go using array destructuring
+        let [hours, mins, secs] = [date.getHours(), date.getMinutes(),
+        date.getSeconds()];
+        if (hours < 10) hours = '0' + hours;
+        if (mins < 10) mins = '0' + mins;
+        if (secs < 10) secs = '0' + secs;
+        console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
+    }
+    stop() {
+        clearInterval(this.timer);
+    }
+    start() {
+        this.display();
+        this.timer = setInterval(() => this.display(), 1000);
+    }
+}
+const myClock = new DigitalClock('my clock:')
+//myClock.start()
+
+
+class PrecisionClock extends DigitalClock{
+    msI = 1000;
+    display() {
+        let date = new Date();
+        //create 3 variables in one go using array destructuring
+        let [hours, mins, secs, ms] = [date.getHours(), date.getMinutes(),
+        date.getSeconds(), date.getMilliseconds()];
+        if (hours < 10) hours = '0' + hours;
+        if (mins < 10) mins = '0' + mins;
+        if (secs < 10) secs = '0' + secs;
+        if (ms < 10) ms = '0' + ms;
+        console.log(`${this.prefix} ${hours}:${mins}:${secs}:${ms}`);
+    }
+    start() {
+        this.display();
+        this.timer = setInterval(() => this.display(), this.msI);
+    }
+    start(msInput) {
+        this.display();
+        this.timer = setInterval(() => this.display(), msInput);
+    }
+}
+
+const myPrecisionClock = new PrecisionClock ('My precision clock:')
+//myPrecisionClock.start(1000)
+//console.log(myPrecisionClock.msI)
+myPrecisionClock.start()
