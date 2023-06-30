@@ -396,8 +396,7 @@ const myClock = new DigitalClock('my clock:')
 //myClock.start()
 
 
-class PrecisionClock extends DigitalClock{
-    msI = 1000;
+class PrecisionClock extends DigitalClock {
     display() {
         let date = new Date();
         //create 3 variables in one go using array destructuring
@@ -409,17 +408,29 @@ class PrecisionClock extends DigitalClock{
         if (ms < 10) ms = '0' + ms;
         console.log(`${this.prefix} ${hours}:${mins}:${secs}:${ms}`);
     }
-    start() {
-        this.display();
-        this.timer = setInterval(() => this.display(), this.msI);
-    }
-    start(msInput) {
-        this.display();
-        this.timer = setInterval(() => this.display(), msInput);
+    startMS(msInput) {
+        if (msInput != null) {
+            this.display();
+            this.timer = setInterval(() => this.display(), msInput);
+        }
+        else {
+            msInput = 1000;
+            this.display();
+            this.timer = setInterval(() => this.display(), msInput);
+        }
     }
 }
 
-const myPrecisionClock = new PrecisionClock ('My precision clock:')
-//myPrecisionClock.start(1000)
-//console.log(myPrecisionClock.msI)
-myPrecisionClock.start()
+// const myPrecisionClock = new PrecisionClock ('My precision clock:')
+// myPrecisionClock.startMS()
+
+
+class AlarmClock extends DigitalClock {
+
+    wakeupTime(){
+        setTimeout(this.display, 1000, limit)
+    }
+ 
+}
+
+const myAlarmClock = new AlarmClock('My alarm:')
