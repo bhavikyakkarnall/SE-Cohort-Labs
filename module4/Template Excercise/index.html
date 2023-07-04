@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head>
@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="card-title"></div>
                 <div class="card-text"></div>
-                <img class="card-img" />
+                <img class="card-img" alt="" />
             </div>
         </div>
     </template>
@@ -21,15 +21,22 @@
 
 <script>
     function addCard(title, text, img) {
+        
         const template =
             document.getElementById("card-template").content.cloneNode(true);
         template.querySelector('.card-title').innerText = title;
         template.querySelector('.card-text').innerText = text;
-        // if (img) {
-        //     template.querySelector('.card-img').src = img;
-        // }
+        if (img) {
+            template.querySelector('.card-img').src = img;
+        }
+        else{
+            template.querySelector('.card-img').remove();
+        }
         document.getElementById('card-list').appendChild(template);
+
     }
+
+    
     var sampleCard = { title: "Module 4", text: "Welcome to Module 4 Labs!" }
     if ('content' in document.createElement('template')) {
         addCard(sampleCard.title, sampleCard.text);
