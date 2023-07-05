@@ -365,7 +365,7 @@ const student1 = new Student('Mike Ross', 28, 'Male')
 console.log(student1)
  */
 
-
+/* 
 console.log("")
 console.log("------------------------------EXCERCISE 8------------------------------")
 console.log("")
@@ -393,10 +393,10 @@ class DigitalClock {
     }
 }
 const myClock = new DigitalClock('my clock:')
-//myClock.start()
+//myClock.start() */
 
 
-class PrecisionClock extends DigitalClock {
+/* class PrecisionClock extends DigitalClock {
     display() {
         let date = new Date();
         //create 3 variables in one go using array destructuring
@@ -421,32 +421,141 @@ class PrecisionClock extends DigitalClock {
     }
 }
 
-// const myPrecisionClock = new PrecisionClock ('My precision clock:')
-// myPrecisionClock.startMS()
+const myPrecisionClock = new PrecisionClock ('My precision clock:')
+myPrecisionClock.startMS(2000) */
 
-
+/* 
 class AlarmClock extends DigitalClock {
-
-    wakeupTime(){
-        setTimeout(this.display, 1000, limit)
+    constructor(prefix, wakeupTime = '07:00') {
+      super(prefix);
+      this.wakeupTime = wakeupTime;
     }
- 
+  
+    display() {
+      let date = new Date();
+      let [hours, mins, secs] = [date.getHours(), date.getMinutes(), date.getSeconds()];
+  
+      if (hours < 10) hours = '0' + hours;
+      if (mins < 10) mins = '0' + mins;
+      if (secs < 10) secs = '0' + secs;
+  
+      const currentTime = `${hours}:${mins}`;
+  
+      if (currentTime === this.wakeupTime) {
+        console.log('Wake Up');
+        this.stop();
+      } else {
+        console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
+      }
+    }
+  }
+
+const myAlarmClock = new AlarmClock('my alarm:', '19:35');
+myAlarmClock.start(); */
+
+
+
+
+
+/* 
+console.log("")
+console.log("------------------------------EXCERCISE 9------------------------------")
+console.log("")
+
+// function randomDelay() {
+//     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+
+//     return new Promise((resolve) => {
+//         setTimeout(resolve, delay);
+//     });
+// }
+
+// randomDelay().then(() => console.log('There appears to have been a delay.'));
+
+
+
+// function randomDelay() {
+//     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (delay % 2 === 0) {
+//                 resolve();
+//             } else {
+//                 reject('Delay failed!');
+//             }
+//         }, delay);
+//     });
+// }
+
+// randomDelay()
+//     .then(() => console.log('There appears to have been a successful delay.'))
+//     .catch((error) => console.log('Delay failed:', error));
+
+
+
+
+
+
+function randomDelay() {
+    const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (delay % 2 === 0) {
+                resolve(delay);
+            } else {
+                reject(`Delay of ${delay} milliseconds failed!`);
+            }
+        }, delay);
+    });
 }
 
-const myAlarmClock = new AlarmClock('My alarm:')
+randomDelay()
+    .then((delay) => console.log(`There appears to have been a successful delay of ${delay} milliseconds.`))
+    .catch((error) => console.log('Delay failed:', error));
+
+ */
 
 
 
+console.log("")
+console.log("------------------------------ EXCERCISE 10 ------------------------------")
+console.log("")
 
 
-
-
-
-
+/* 
 //---------------------------------------------
 //run 'npm init' and accept all the defaults
 //run 'npm install node-fetch'
 //add this line to package.json after line 5: "type": "module",
+import fetch from 'node-fetch'
+
+globalThis.fetch = fetch
+
+async function fetchURLDataUsingAsync(url) {
+    let response = await fetch(url);
+    if (response.status === 200) {
+        return await response.json();
+    } else {
+        throw new Error(`Request failed with status ${response.status}`);
+    }
+}
+
+async function test_fetchURLDataUsingAsync() {
+    try {
+        var records = await fetchURLDataUsingAsync('https://jsonplaceholder.typicode.com/todos/1');
+        console.log(records);
+    }
+    catch(error) {
+        console.error(error.message);
+    }
+}
+
+test_fetchURLDataUsingAsync(); */
+
+
+
 import fetch from 'node-fetch'
 
 globalThis.fetch = fetch
