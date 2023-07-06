@@ -228,8 +228,29 @@ const books = [
     { id: 4, title: 'Brave New World', author: 'Aldous Huxley', year: 1932 },
     { id: 5, title: 'The Catcher in the Rye', author: 'J.D. Salinger', year: 1951 },
     ];
- */
 
+function getBookTitle(bookId) {
+  const book = books.find(book => book.id === bookId);
+  console.log(book.title)
+}
+
+//getBookTitle(2);
+
+function getOldBooks(year) {
+    const book =  books.filter(book => book.year < year);
+    console.log(book)
+  }
+
+  //getOldBooks(1950)
+
+
+  function addGenre(g) {
+    const book = books.map(book => ({ ...book, genre: g }));
+    console.log(book)
+  }
+
+  addGenre('classic')
+ */
 
 /* 
 console.log("")
@@ -311,7 +332,7 @@ function topEarner(salaryObject){
 
 
 
-
+/* 
 console.log("")
 console.log("------------------------------EXCERCISE 10 ------------------------------")
 console.log("")
@@ -350,4 +371,4 @@ function daysInBetween(date1,date2){
     console.log("The amount of days in between: " + diff)
 }
 
-daysInBetween("05/1/2005","05/11/2005");
+daysInBetween("05/1/2005","05/11/2005"); */
